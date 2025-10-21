@@ -4,7 +4,7 @@ class Dispatcher:
     def __init__(self):
         self._handlers: list[Handler] = []
 
-    def add_handlers(self, *handlers: list[Handler]) -> None:
+    def add_handler(self, *handlers: list[Handler]) -> None:
         for handler in handlers:
             self._handlers.append(handler)
 

@@ -20,11 +20,11 @@ def makeRequest(method: str, **param) -> dict:
         assert response_json["ok"] == True
         return response_json["result"]
 
-def getUpdates(offset: int) -> dict:
-    return makeRequest("getUpdates", offset = offset)
+def getUpdates(**params) -> dict:
+    return makeRequest('getUpdates', **params)
 
-def sendMessage(chat_id: int, text: str) -> dict:
-    return makeRequest("sendMessage", chat_id = chat_id, text = text)
+def sendMessage(chat_id: int, text: str, **params) -> dict:
+    return makeRequest('sendMessage', chat_id=chat_id, text=text, **params)
 
 def getMe() -> dict:
     return makeRequest("getMe")
