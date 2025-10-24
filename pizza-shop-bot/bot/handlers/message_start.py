@@ -18,13 +18,13 @@ class MessageStart(Handler):
         bot.database_client.update_user_state(telegram_id, "WAIT_FOR_PIZZA_NAME")
         bot.telegram_client.sendMessage(
             chat_id = update["message"]["chat"]["id"],
-            text = "Салам, Бродяга, хавать будешь?",
+            text = "Добро пожаловать в нашу пиццерию! Приступим к заказу!",
             reply_markup = json.dumps({"remove_keyboard": True}),
         )
 
         bot.telegram_client.sendMessage(
             chat_id = update["message"]["chat"]["id"],
-            text = "Время принять выбор",
+            text = "Выберите пиццу!",
             reply_markup = json.dumps(
                 {
                     "inline_keyboard": [
@@ -34,7 +34,7 @@ class MessageStart(Handler):
                         ],
                         [
                             {"text": "Пармская", "callback_data": "pizza_parma"},
-                            {"text": "4 сыра", "callback_data": "pizza_quattro_stagioni"},
+                            {"text": "4 сезона", "callback_data": "pizza_quattro_stagioni"},
                         ]
                     ]
                 }

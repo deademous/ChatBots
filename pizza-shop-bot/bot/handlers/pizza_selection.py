@@ -19,7 +19,13 @@ class PizzaSelectionHandler(Handler):
         telegram_id = update["callback_query"]["from"]["id"]
         callback_data = update["callback_query"]["data"]
 
-        pizza_name = callback_data.replace("pizza_", "").replace("_", " ").title()
+        pizza_mapping = {
+            "pizza_margherita": "Маргарита",
+            "pizza_pepperoni": "Пепперони", 
+            "pizza_parma": "Пармская",
+            "pizza_quattro_stagioni": "Четыре сезона"
+        }
+        pizza_name = pizza_mapping.get(callback_data)
         bot.database_client.update_user_data(telegram_id, {"pizza_name": pizza_name})
         bot.database_client.update_user_state(telegram_id, "WAIT_FOR_PIZZA_SIZE")
         bot.telegram_client.answerCallbackQuery(update["callback_query"]["id"],)
@@ -29,7 +35,7 @@ class PizzaSelectionHandler(Handler):
         ) 
         bot.telegram_client.sendMessage(
             chat_id = update["callback_query"]["message"]["chat"]["id"],
-            text = "Брат, какой диаметр?",
+            text = "Выберите размер пиццы:",
             reply_markup = json.dumps(
                 {
                     "inline_keyboard": [
