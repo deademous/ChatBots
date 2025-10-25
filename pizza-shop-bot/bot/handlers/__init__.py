@@ -5,6 +5,7 @@ from bot.handlers.message_start import MessageStart
 from bot.handlers.pizza_selection import PizzaSelectionHandler
 from bot.handlers.pizza_size import PizzaSizeHandler
 from bot.handlers.drinks import DrinksHandler
+from bot.handlers.check_order import CheckOrderHandler
 
 def get_handlers() -> list[Handler]:
     return [
@@ -13,5 +14,6 @@ def get_handlers() -> list[Handler]:
         MessageStart(),
         PizzaSelectionHandler(),
         PizzaSizeHandler(),
-        DrinksHandler()
+        DrinksHandler(),
+        CheckOrderHandler()
     ]
